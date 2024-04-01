@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--configuration core file-->
+<mapper namespace="com.example.demo.mapper.FeedbackMapper">
+
+    <select id="ListAll" resultType="Feedback">
+        select * from feedback where isDelete = 0 limit #{page},5;
+    </select>
+    <select id="List" resultType="Feedback">
+        select * from feedback where questionSort=#{questionSort} and isDelete = 0 limit #{page},5;
+    </select>
+    <select id="ListById" resultType="Feedback">
+        select * from feedback where id=#{id};
+    </select>
+    <insert id="addFeedback" parameterType="Feedback">
+        insert into feedback(id,questionSort,questionDes,qq) values (#{id},#{questionSort}, #{questionDes},#{qq})
+    </insert>
+    <update id="handleFeedback">
+        update feedback set handle = #{handle},isHandle=1 where id = #{id};
+    </update>
+    <update id="deleteFeedback" parameterType="int">
+        update feedback set isDelete=1 where id = #{id};
+    </update>
+
+</mapper>

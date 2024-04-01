@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vue 表格示例</title>
+  <script src="https://v2.vuejs.org/js/vue.min.js"></script> 
+</head>
+<body>
+
+  <div id="app">
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>操作</th>
+      </tr>
+      <tr v-for="(item, index) in items">
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.gender }}</td>
+        <td><button @click="deleteRow(item.id)">删除</button></td>
+      </tr>
+    </table>
+  </div>
+
+  <script type="text/javascript">
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        items: [
+            { id: 1, name: '张三', gender: '男' },
+            { id: 2, name: '李四', gender: '女' },
+            { id: 3, name: '王五', gender: '男' },
+          ],
+        
+      },
+      methods: {
+        deleteRow(index) {
+          alert(this.items[index-1].gender)
+          this.items.splice(index-1,1)
+        },
+      },
+    });
+
+    
+  </script>
+
+</body>
+</html>
